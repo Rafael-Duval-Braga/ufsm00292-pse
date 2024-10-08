@@ -134,15 +134,9 @@ void main(void){ //codigo com interferencia humana
                 
                 printf("%s\n", chk);
 
-                slot = 5;
-                break;
-                
-            case 5:
-                printf("%s\n\n", etx);
-                
                 slot = 0;
                 break;
-                
+                               
             default:
                 slot = 0;
                 break;

@@ -12,28 +12,28 @@ int testes_executados = 0;
 #define ETX 0x03
 #define MAX_BUFFER 256
 
-/* Definição dos possíveis estados */
+/* definição dos possíveis estados */
 typedef enum {
     ST_WRITE = 0, ST_STX, ST_QTD, ST_DATA, ST_CHK, ST_ETX
 } States;
 
-/* Ponteiro para funções */
+/* ponteiro para funções */
 typedef void (*Action)(unsigned char data);
 
-/* Estrutura da Máquina de Estados */
+/* estrutura da Máquina de Estados */
 struct StateMachine {
     States state;
     char buffer[MAX_BUFFER];
-    char chkBuffer[8]; // Buffer para o checksum
-    char qtdBuffer[8]; // Buffer para a quantidade
+    char chkBuffer[8]; // buffer para o checksum
+    char qtdBuffer[8]; // buffer para a quantidade
     int indBuffer;
-    Action action[6];  // Array de ponteiros para funções
+    Action action[6];  // array de ponteiros para funções
 } sm;
 
-/* Função para ler dados (com a possibilidade de simular um input) */
+/* função para ler dados (com a possibilidade de simular um input) */
 char* lerDado(char dado[]) {
     char *buffer;
-    int tamanho = 1;  // Tamanho inicial do buffer
+    int tamanho = 1;  // tamanho inicial do buffer
     int posicao = 0;
 
     // Aloca memória inicial
@@ -42,20 +42,20 @@ char* lerDado(char dado[]) {
         return NULL;  // Retorna NULL em caso de falha de alocação
     }
 
-    // Lê caractere por caractere da string 'dado'
+    // le caractere por caractere da string 'dado'
     while (dado[posicao] != '\0') {
-        // Se necessário, redimensiona o buffer
+        // se necessario, redimensiona o buffer
         if (posicao >= tamanho - 1) {
             tamanho *= 2;  // Dobra o tamanho do buffer
             buffer = (char*) realloc(buffer, sizeof(char) * tamanho);
             if (buffer == NULL) {
-                return NULL;  // Retorna NULL em caso de falha de realocação
+                return NULL;  // retorna NULL em caso de falha de realocação
             }
         }
         buffer[posicao] = dado[posicao];
         posicao++;
     }
-    buffer[posicao] = '\0';  // Adiciona o terminador '\0'
+    buffer[posicao] = '\0';  // adiciona o terminador '\0'
     return buffer;
 }
 
@@ -66,24 +66,24 @@ int checksum(char *dado) {
         if (dado[i] >= '0' && dado[i] <= '9') {
             soma += dado[i] - '0';
         } else {
-            return -1;  // Retorna erro se não for número
+            return -1;  // retorna erro se não for número
         }
     }
     return soma;
 }
 
-/* Função que converte um número inteiro para string */
+/* função que converte um número inteiro para string */
 void inttochar(int numero, char *str) {
-    sprintf(str, "%d", numero);  // Converte int para string
+    sprintf(str, "%d", numero);  // converte int para string
 }
 
-/* Estado ST_WRITE: Lê o dado */
+/* estado ST_WRITE: Le o dado */
 void stWrite(unsigned char data) {
-    char dado_input[] = "123";  // Simula um dado de entrada
-    char* dado = lerDado(dado_input);  // Lê o dado
+    char dado_input[] = "123";  // simula um dado de entrada
+    char* dado = lerDado(dado_input);  // le o dado
     strcpy(sm.buffer, dado);  // Copia o dado para o buffer da máquina de estados
-    free(dado);  // Libera a memória alocada
-    sm.state = ST_STX;  // Próximo estado
+    free(dado);  // leibera a memória alocada
+    sm.state = ST_STX;  // próximo estado
 }
 
 /* Estado ST_STX: Exibe o valor de STX */

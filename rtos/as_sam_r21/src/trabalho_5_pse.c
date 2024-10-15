@@ -45,16 +45,16 @@ void tarefa_9(void);
 /*
  * Configuracao dos tamanhos das pilhas
  */
-#define TAM_PILHA_1	 (TAM_MINIMO_PILHA + 24)
-#define TAM_PILHA_2	 (TAM_MINIMO_PILHA + 24)
-#define TAM_PILHA_3	 (TAM_MINIMO_PILHA + 24)
-#define TAM_PILHA_4	 (TAM_MINIMO_PILHA + 24)
-#define TAM_PILHA_5	 (TAM_MINIMO_PILHA + 24)
-#define TAM_PILHA_6	 (TAM_MINIMO_PILHA + 24)
-#define TAM_PILHA_7	 (TAM_MINIMO_PILHA + 24)
-#define TAM_PILHA_8	 (TAM_MINIMO_PILHA + 24)
-#define TAM_PILHA_9      (TAM_MINIMO_PILHA + 24)
-#define TAM_PILHA_OCIOSA (TAM_MINIMO_PILHA + 24)
+#define TAM_PILHA_1			(TAM_MINIMO_PILHA + 24)
+#define TAM_PILHA_2			(TAM_MINIMO_PILHA + 24)
+#define TAM_PILHA_3			(TAM_MINIMO_PILHA + 24)
+#define TAM_PILHA_4			(TAM_MINIMO_PILHA + 24)
+#define TAM_PILHA_5			(TAM_MINIMO_PILHA + 24)
+#define TAM_PILHA_6			(TAM_MINIMO_PILHA + 24)
+#define TAM_PILHA_7			(TAM_MINIMO_PILHA + 24)
+#define TAM_PILHA_8			(TAM_MINIMO_PILHA + 24)
+#define TAM_PILHA_9         (TAM_MINIMO_PILHA + 24)
+#define TAM_PILHA_OCIOSA	(TAM_MINIMO_PILHA + 24)
 
 /*
  * Declaracao das pilhas das tarefas
@@ -80,10 +80,11 @@ int main(void)
 	/* Criacao das tarefas */
 	/* Parametros: ponteiro, nome, ponteiro da pilha, tamanho da pilha, prioridade da tarefa */
 	
-	CriaTarefa(tarefa_1, "Tarefa 1", PILHA_TAREFA_1, TAM_PILHA_1, 1);
+//	CriaTarefa(tarefa_1, "Tarefa 1", PILHA_TAREFA_1, TAM_PILHA_1, 1);
 	
-	CriaTarefa(tarefa_2, "Tarefa 2", PILHA_TAREFA_2, TAM_PILHA_2, 2);
+//	CriaTarefa(tarefa_2, "Tarefa 2", PILHA_TAREFA_2, TAM_PILHA_2, 2);
     
+    CriaTarefa(tarefa_9, "Tarefa 9", PILHA_TAREFA_9, TAM_PILHA_9, 1);
  
 	
 	/* Cria tarefa ociosa do sistema */
@@ -251,12 +252,22 @@ void tarefa_8(void)
 	}
 }
 
-void tarefa_9(void)
+void tarefa_9(void) //PISCAR O LED VARIAS VEZES
 {
 			
+	volatile uint16_t a = 0;
+	for(;;)
+	{
+		a++;	
+			
+		/* Liga LED. */
+		port_pin_set_output_level(LED_0_PIN, LED_0_ACTIVE);
+		TarefaEspera(100); 	/* tarefa 1 se coloca em espera por 3 marcas de tempo (ticks) */
 		
-		port_pin_set_output_level(LED_0_PIN, LED_0_ACTIVE); /* Liga LED. */
-		
+		/* Desliga LED. */
+		port_pin_set_output_level(LED_0_PIN, !LED_0_ACTIVE);
+		TarefaEspera(100); 	/* tarefa 1 se coloca em espera por 3 marcas de tempo (ticks) */
+	}
 		
 }
 

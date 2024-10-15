@@ -45,16 +45,16 @@ void tarefa_9(void);
 /*
  * Configuracao dos tamanhos das pilhas
  */
-#define TAM_PILHA_1			(TAM_MINIMO_PILHA + 24)
-#define TAM_PILHA_2			(TAM_MINIMO_PILHA + 24)
-#define TAM_PILHA_3			(TAM_MINIMO_PILHA + 24)
-#define TAM_PILHA_4			(TAM_MINIMO_PILHA + 24)
-#define TAM_PILHA_5			(TAM_MINIMO_PILHA + 24)
-#define TAM_PILHA_6			(TAM_MINIMO_PILHA + 24)
-#define TAM_PILHA_7			(TAM_MINIMO_PILHA + 24)
-#define TAM_PILHA_8			(TAM_MINIMO_PILHA + 24)
-#define TAM_PILHA_9         (TAM_MINIMO_PILHA + 24)
-#define TAM_PILHA_OCIOSA	(TAM_MINIMO_PILHA + 24)
+#define TAM_PILHA_1	 (TAM_MINIMO_PILHA + 24)
+#define TAM_PILHA_2	 (TAM_MINIMO_PILHA + 24)
+#define TAM_PILHA_3	 (TAM_MINIMO_PILHA + 24)
+#define TAM_PILHA_4	 (TAM_MINIMO_PILHA + 24)
+#define TAM_PILHA_5	 (TAM_MINIMO_PILHA + 24)
+#define TAM_PILHA_6	 (TAM_MINIMO_PILHA + 24)
+#define TAM_PILHA_7	 (TAM_MINIMO_PILHA + 24)
+#define TAM_PILHA_8	 (TAM_MINIMO_PILHA + 24)
+#define TAM_PILHA_9      (TAM_MINIMO_PILHA + 24)
+#define TAM_PILHA_OCIOSA (TAM_MINIMO_PILHA + 24)
 
 /*
  * Declaracao das pilhas das tarefas

@@ -1,3 +1,8 @@
+
+
+//obs rodar esse codigo dentro da pasta com os pacotes incluidos, como o "pt.h" encontrado no arquivo da solucao parcial
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdint.h>

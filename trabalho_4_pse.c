@@ -112,6 +112,8 @@ static char *teste_pacote_correto(void)
     envia_pacote();
     verifica("erro: PKT_RXED deveria ser 1", PKT_RXED == 1);
     verifica("erro: ACK deveria ser 0 antes do processamento", ACK == 0);
+    ACK = processa_pacote(buffer, buffer);    
+    verifica("erro: ACK deveria ser 1 antes do processamento", ACK == 1);  
     return 0;
 }
 
